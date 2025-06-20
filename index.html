@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CaRu-TEC | Elektrotechnik Meisterbetrieb</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Audio+Wide&display=swap" rel="stylesheet">
+  <style>
+    /* Cookie Banner Styles */
+    .cookie-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.95);
+      color: white;
+      padding: 20px;
+      z-index: 10000;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+      transform: translateY(100%);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .cookie-banner.show {
+      transform: translateY(0);
+    }
+
+    .cookie-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .cookie-text {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .cookie-text h3 {
+      margin: 0 0 10px 0;
+      color: #ff6b35;
+      font-size: 18px;
+    }
+
+    .cookie-text p {
+      margin: 0;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    .cookie-text a {
+      color: #ff6b35;
+      text-decoration: underline;
+    }
+
+    .cookie-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .cookie-btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .cookie-btn.accept-all {
+      background: #ff6b35;
+      color: white;
+    }
+
+    .cookie-btn.accept-all:hover {
+      background: #e55a2b;
+    }
+
+    .cookie-btn.accept-necessary {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+
+    .cookie-btn.accept-necessary:hover {
+      background: white;
+      color: black;
+    }
+
+    .cookie-btn.settings {
+      background: #666;
+      color: white;
+    }
+
+    .cookie-btn.settings:hover {
+      background: #555;
+    }
+
+    /* Cookie Settings Modal */
+    .cookie-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 10001;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .cookie-modal.show {
+      display: flex;
+    }
+
+    .cookie-modal-content {
+      background: white;
+      border-radius: 10px;
+      padding: 30px;
+      max-width: 600px;
+      width: 100%;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    .cookie-modal h2 {
+      color: #ff6b35;
+      margin-top: 0;
+    }
+
+    .cookie-category {
+      margin: 20px 0;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .cookie-category h4 {
+      margin: 0 0 10px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .cookie-toggle {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 24px;
+    }
+
+    .cookie-toggle input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .cookie-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 24px;
+    }
+
+    .cookie-slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .cookie-slider {
+      background-color: #ff6b35;
+    }
+
+    input:checked + .cookie-slider:before {
+      transform: translateX(26px);
+    }
+
+    .cookie-toggle.disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .cookie-modal-buttons {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .cookie-content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .cookie-buttons {
+        justify-content: center;
+        width: 100%;
+      }
+
+      .cookie-btn {
+        flex: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>CaRu-TEC</h1>
+    <p>MEISTERBETRIEB SEIT 2015</p>
+  </header>
+
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="active">Home</a>
+      <a href="baustromanlagen.html">Baustromanlagen</a>
+      <a href="gebaeudetechnik.html">Gebäudetechnik</a>
+      <a href="agb.html">AGB/AMB</a>
+      <a href="impressum.html">Impressum</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Ihr Elektrotechnik-Experte</h1>
+      <p>Professionelle Elektroinstallationen und Baustromanlagen aus Meisterhand – zuverlässig, sicher und zukunftsorientiert.</p>
+      <a href="#kontakt" class="cta-button">Jetzt Kontakt aufnehmen</a>
+    </div>
+  </section>
+
+  <section class="content">
+    <div class="section">
+      <h2>Unser Leistungsportfolio</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">⚡</div>
+          <h3>Elektroinstallationen</h3>
+          <p>Komplette Elektroinstallationen für Neubau, Sanierung und Modernisierung. Von der Planung bis zur Abnahme – alles aus einer Hand.</p>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">🔌</div>
+          <h3>Baustromanlagen</h3>
+          <p>Zuverlässige Baustromanlagen nach DGUV 03 geprüft. Verschiedene Typen von 16A bis 400A für jede Baustelle verfügbar.</p>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">🔒</div>
+          <h3>Sicherheitstechnik</h3>
+          <p>Moderne Sicherheitslösungen für Ihr Gebäude. Einbruchmeldetechnik, Videoüberwachung und Zutrittskontrollsysteme.</p>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">🏠</div>
+          <h3>KNX Gebäudeautomation</h3>
+          <p>Intelligente Gebäudesteuerung mit KNX-Technologie. Komfort, Energieeffizienz und Sicherheit in einem System.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🔧</div>
+          <h3>Verteilungsbau</h3>
+          <p>Professioneller Schaltschrankbau und Verteilungsanlagen nach höchsten Standards. Individuelle Lösungen für Industrie und Gewerbe.</p>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">📞</div>
+          <h3>Kundenservice</h3>
+          <p>Umfassender Service und Wartung Ihrer Anlagen. Schnelle Hilfe bei Störungen und regelmäßige Wartungsarbeiten.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="about">
+      <div class="about-content">
+        <div class="about-text">
+          <h2>Über CaRu-TEC</h2>
+          <p>Als Elektrotechnik-Meisterbetrieb seit 2015 stehen wir für höchste Qualität und zuverlässige Dienstleistungen im Bereich der Elektrotechnik. Unser erfahrenes Team sorgt dafür, dass Ihre Projekte termingerecht und nach neuesten Standards umgesetzt werden.</p>
+          <p>Von der klassischen Elektroinstallation bis zur modernen Gebäudeautomation – wir bieten Ihnen umfassende Lösungen aus einer Hand. Vertrauen Sie auf unsere Expertise und profitieren Sie von unserem persönlichen Service.</p>
+        </div>
+        <div class="about-stats">
+          <div class="stat">
+            <span class="stat-number">10+</span>
+            <span class="stat-label">Jahre Erfahrung</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">100%</span>
+            <span class="stat-label">Kundenzufriedenheit</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Warum CaRu-TEC?</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🏆</div>
+          <h3>Meisterbetrieb</h3>
+          <p>Zertifizierter Elektrotechnik-Meisterbetrieb mit höchsten Qualitätsstandards und kontinuierlicher Weiterbildung.</p>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">⚡</div>
+          <h3>Schnelle Reaktion</h3>
+          <p>Kurze Reaktionszeiten und flexible Terminvereinbarung für Ihre Projekte und Notfälle.</p>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">✅</div>
+          <h3>Rundum-Service</h3>
+          <p>Von der Beratung über die Installation bis zur Wartung – alles aus einer Hand.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="kontakt" id="kontakt">
+    <h2>📞 Kontaktieren Sie uns!</h2>
+    <p><strong>CaRu-TEC Energie- und Gebäudetechnik</strong></p>
+    <div class="kontakt-daten">
+      <div class="kontakt-item">
+        <span>📞 Telefon</span>
+        <a href="tel:015229575225">01522 9575225</a>
+      </div>
+      <div class="kontakt-item">
+        <span>📧 E-Mail</span>
+        <a href="mailto:info@caru-tec.de">info@caru-tec.de</a>
+      </div>
+      <div class="kontakt-item">
+        <span>📍 Adresse</span>
+        <span>Damm 35, 25421 Pinneberg</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cookie Banner -->
+  <div class="cookie-banner" id="cookieBanner">
+    <div class="cookie-content">
+      <div class="cookie-text">
+        <h3>🍪 Wir verwenden Cookies</h3>
+        <p>Diese Website verwendet Cookies, um Ihnen die bestmögliche Nutzererfahrung zu bieten. Notwendige Cookies sind für die Grundfunktionen der Website erforderlich. Mit Ihrer Zustimmung verwenden wir auch Cookies für Analyse und Marketing. Sie können Ihre Einstellungen jederzeit anpassen. Weitere Informationen finden Sie in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+      </div>
+      <div class="cookie-buttons">
+        <button class="cookie-btn accept-all" onclick="acceptAllCookies()">Alle akzeptieren</button>
+        <button class="cookie-btn accept-necessary" onclick="acceptNecessaryCookies()">Nur notwendige</button>
+        <button class="cookie-btn settings" onclick="showCookieSettings()">Einstellungen</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cookie Settings Modal -->
+  <div class="cookie-modal" id="cookieModal">
+    <div class="cookie-modal-content">
+      <h2>Cookie-Einstellungen</h2>
+      <p>Hier können Sie individuell einstellen, welche Cookies Sie zulassen möchten. Ihre Auswahl wird für ein Jahr gespeichert.</p>
+      
+      <div class="cookie-category">
+        <h4>
+          Notwendige Cookies
+          <label class="cookie-toggle disabled">
+            <input type="checkbox" checked disabled>
+            <span class="cookie-slider"></span>
+          </label>
+        </h4>
+        <p>Diese Cookies sind für die Grundfunktionen der Website erforderlich und können nicht deaktiviert werden. Sie umfassen Session-Management und Sicherheitsfunktionen.</p>
+      </div>
+
+      <div class="cookie-category">
+        <h4>
+          Funktionale Cookies
+          <label class="cookie-toggle">
+            <input type="checkbox" id="functionalCookies">
+            <span class="cookie-slider"></span>
+          </label>
+        </h4>
+        <p>Diese Cookies ermöglichen erweiterte Funktionalitäten und Personalisierung. Sie können von uns oder von Drittanbietern gesetzt werden, deren Dienste wir nutzen.</p>
+      </div>
+
+      <div class="cookie-category">
+        <h4>
+          Analyse Cookies
+          <label class="cookie-toggle">
+            <input type="checkbox" id="analyticsCookies">
+            <span class="cookie-slider"></span>
+          </label>
+        </h4>
+        <p>Diese Cookies helfen uns zu verstehen, wie Besucher mit unserer Website interagieren, indem sie Informationen anonym sammeln und melden.</p>
+      </div>
+
+      <div class="cookie-category">
+        <h4>
+          Marketing Cookies
+          <label class="cookie-toggle">
+            <input type="checkbox" id="marketingCookies">
+            <span class="cookie-slider"></span>
+          </label>
+        </h4>
+        <p>Diese Cookies werden verwendet, um Ihnen relevante Werbung zu zeigen. Sie können auch dazu verwendet werden, die Anzahl der Anzeigen zu begrenzen und die Wirksamkeit von Werbekampagnen zu messen.</p>
+      </div>
+
+      <div class="cookie-modal-buttons">
+        <button class="cookie-btn settings" onclick="hideCookieSettings()">Abbrechen</button>
+        <button class="cookie-btn accept-necessary" onclick="saveCustomCookieSettings()">Auswahl speichern</button>
+        <button class="cookie-btn accept-all" onclick="acceptAllFromModal()">Alle akzeptieren</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="impressum.html">Impressum</a>
+        <a href="agb.html">AGB</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </div>
+      <p>&copy; 2015 CaRu-TEC – Carlo Rumè<br>
+      Meisterbetrieb für Elektrotechnik · Damm 35 · 25421 Pinneberg<br>
+      Telefon: 01522 9575225 · E-Mail: info@caru-tec.de<br>
+      IBAN: DE79 2219 1405 0007 7025 60 · SteuerNr: 31/073/02015 · BetriebsNr: 2121222348</p>
+    </div>
+  </footer>
+
+  <script>
+    // Cookie Management Script
+    let cookieConsent = {
+      necessary: true,
+      functional: false,
+      analytics: false,
+      marketing: false
+    };
+
+    // Check if cookie consent has been given
+    function checkCookieConsent() {
+      const consent = localStorage.getItem('cookieConsent');
+      if (!consent) {
+        showCookieBanner();
+      } else {
+        cookieConsent = JSON.parse(consent);
+        loadCookies();
+      }
+    }
+
+    // Show cookie banner
+    function showCookieBanner() {
+      const banner = document.getElementById('cookieBanner');
+      setTimeout(() => {
+        banner.classList.add('show');
+      }, 1000);
+    }
+
+    // Hide cookie banner
+    function hideCookieBanner() {
+      const banner = document.getElementById('cookieBanner');
+      banner.classList.remove('show');
+    }
+
+    // Accept all cookies
+    function acceptAllCookies() {
+      cookieConsent = {
+        necessary: true,
+        functional: true,
+        analytics: true,
+        marketing: true
+      };
+      saveCookieConsent();
+      hideCookieBanner();
+      loadCookies();
+    }
+
+    // Accept only necessary cookies
+    function acceptNecessaryCookies() {
+      cookieConsent = {
+        necessary: true,
+        functional: false,
+        analytics: false,
+        marketing: false
+      };
+      saveCookieConsent();
+      hideCookieBanner();
+      loadCookies();
+    }
+
+    // Show cookie settings modal
+    function showCookieSettings() {
+      const modal = document.getElementById('cookieModal');
+      modal.classList.add('show');
+      
+      // Load current settings
+      document.getElementById('functionalCookies').checked = cookieConsent.functional;
+      document.getElementById('analyticsCookies').checked = cookieConsent.analytics;
+      document.getElementById('marketingCookies').checked = cookieConsent.marketing;
+    }
+
+    // Hide cookie settings modal
+    function hideCookieSettings() {
+      const modal = document.getElementById('cookieModal');
+      modal.classList.remove('show');
+    }
+
+    // Save custom cookie settings
+    function saveCustomCookieSettings() {
+      cookieConsent = {
+        necessary: true,
+        functional: document.getElementById('functionalCookies').checked,
+        analytics: document.getElementById('analyticsCookies').checked,
+        marketing: document.getElementById('marketingCookies').checked
+      };
+      saveCookieConsent();
+      hideCookieSettings();
+      hideCookieBanner();
+      loadCookies();
+    }
+
+    // Accept all from modal
+    function acceptAllFromModal() {
+      document.getElementById('functionalCookies').checked = true;
+      document.getElementById('analyticsCookies').checked = true;
+      document.getElementById('marketingCookies').checked = true;
+      saveCustomCookieSettings();
+    }
+
+    // Save cookie consent to localStorage
+    function saveCookieConsent() {
+      const expiryDate = new Date();
+      expiryDate.setFullYear(expiryDate.getFullYear() + 1);
+      
+      const consentData = {
+        ...cookieConsent,
+        expiry: expiryDate.getTime()
+      };
+      
+      localStorage.setItem('cookieConsent', JSON.stringify(consentData));
+      
+      // Set a basic consent cookie
+      document.cookie = `cookieConsent=accepted; expires=${expiryDate.toUTCString()}; path=/; SameSite=Lax`;
+    }
+
+    // Load cookies based on consent
+    function loadCookies() {
+      if (cookieConsent.analytics) {
+        // Load Google Analytics or other analytics tools
+        console.log('Loading analytics cookies...');
+        // Example: loadGoogleAnalytics();
+      }
+      
+      if (cookieConsent.marketing) {
+        // Load marketing/advertising cookies
+        console.log('Loading marketing cookies...');
+        // Example: loadMarketingPixels();
+      }
+      
+      if (cookieConsent.functional) {
+        // Load functional cookies
+        console.log('Loading functional cookies...');
+        // Example: loadChatWidget();
+      }
+    }
+
+    // Check if consent has expired
+    function isConsentExpired() {
+      const consent = localStorage.getItem('cookieConsent');
+      if (!consent) return true;
+      
+      const consentData = JSON.parse(consent);
+      return new Date().getTime() > consentData.expiry;
+    }
+
+    // Initialize cookie management when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      if (isConsentExpired()) {
+        localStorage.removeItem('cookieConsent');
+        showCookieBanner();
+      } else {
+        checkCookieConsent();
+      }
+    });
+
+    // Close modal when clicking outside
+    document.getElementById('cookieModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        hideCookieSettings();
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CaRu-TEC | Baustromanlagen</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 2rem;
+      font-size: 0.95rem;
+      background: white;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    
+    th, td {
+      border: 1px solid #e0e0e0;
+      padding: 1rem 0.8rem;
+      text-align: center;
+    }
+    
+    th {
+      background-color: #002b56;
+      color: white;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.5px;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #f8f9fa;
+    }
+    
+    tr:hover {
+      background-color: #fff3cd;
+      transition: background-color 0.3s ease;
+    }
+    
+    td:first-child {
+      text-align: left;
+      font-weight: 500;
+      color: #002b56;
+    }
+    
+    .price {
+      font-weight: bold;
+      color: #007c3f;
+    }
+    
+    .kaution {
+      color: #007c3f;
+      font-weight: bold;
+    }
+    
+    .topseller-container {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .topseller-sticker {
+      position: absolute;
+      top: -10px;
+      right: -20px;
+      background: linear-gradient(45deg, #ff6b35, #ff8e53);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 3px 10px rgba(255, 107, 53, 0.4);
+      transform: rotate(10deg);
+      z-index: 10;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { transform: rotate(10deg) scale(1); }
+      50% { transform: rotate(10deg) scale(1.05); }
+      100% { transform: rotate(10deg) scale(1); }
+    }
+    
+    @media (max-width: 768px) {
+      table {
+        font-size: 0.8rem;
+      }
+      
+      th, td {
+        padding: 0.5rem 0.3rem;
+      }
+      
+      .table-container {
+        overflow-x: auto;
+      }
+      
+      .topseller-sticker {
+        font-size: 0.7rem;
+        padding: 6px 12px;
+        right: -15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>CaRu-TEC</h1>
+    <p>MEISTERBETRIEB SEIT 2015</p>
+  </header>
+
+  <nav>
+    <div class="nav-container">
+      <a href="index.html">Home</a>
+      <a href="baustromanlagen.html" class="active">Baustromanlagen</a>
+      <a href="gebaeudetechnik.html">Gebäudetechnik</a>
+      <a href="agb.html">AGB/AMB</a>
+      <a href="impressum.html">Impressum</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Baustromanlagen</h1>
+      <p>Zuverlässige Stromversorgung für Ihre Baustelle – sicher, geprüft und sofort einsatzbereit</p>
+    </div>
+  </section>
+
+  <section class="content">
+    <div class="section">
+      <h2>Wir machen Ihr Erdloch zu einer Baustelle!</h2>
+      <p style="font-size: 1.1rem; text-align: center; margin-bottom: 2rem; color: #555;">
+        Wir bieten zuverlässige Baustromanlagen für Ihre Baustelle – sicher nach DGUV 03 geprüft und sofort einsatzbereit. 
+        Unsere Baustromverteiler erfüllen höchste technische Standards der VDE 0100 704 und sind für alle Bauvorhaben geeignet. 
+        Gerne unterstützen wir Sie bei der Planung Ihrer Baustromanlage von der Antragstellung bis zur Abmeldung.
+      </p>
+
+      <h2>Preisliste Baustromanlagen</h2>
+      <div class="table-container">
+        <table>
+          <tr>
+            <th>Artikel</th>
+            <th>Tagesmiete</th>
+            <th>Wochenmiete</th>
+            <th>Monatsmiete</th>
+            <th>Jahresmiete</th>
+            <th>Kaution</th>
+          </tr>
+          <tr>
+            <td>Baustromverteiler TYP I (16A/32A, 5 Anschlüsse)</td>
+            <td class="price">5,00 €</td>
+            <td class="price">21,00 €</td>
+            <td class="price">45,00 €</td>
+            <td class="price">365,00 €</td>
+            <td class="kaution">450,00 €</td>
+          </tr>
+          <tr>
+            <td>Baustromverteiler TYP II (16A/32A, 9 Anschlüsse)</td>
+            <td class="price">7,50 €</td>
+            <td class="price">35,00 €</td>
+            <td class="price">60,00 €</td>
+            <td class="price">660,00 €</td>
+            <td class="kaution">450,00 €</td>
+          </tr>
+          <tr>
+            <td>Baustromverteiler TYP III (16A/32A/63A, 6 Anschlüsse)</td>
+            <td class="price">10,00 €</td>
+            <td class="price">50,00 €</td>
+            <td class="price">80,00 €</td>
+            <td class="price">880,00 €</td>
+            <td class="kaution">600,00 €</td>
+          </tr>
+          <tr>
+            <td>Baustromverteiler TYP KT125 (63A/125A)</td>
+            <td class="price">50,00 €</td>
+            <td class="price">120,00 €</td>
+            <td class="price">280,00 €</td>
+            <td class="price">3.000,00 €</td>
+            <td class="kaution">2.800,00 €</td>
+          </tr>
+          <tr>
+            <td>Baustromverteiler TYP KT160 (125A-160A)</td>
+            <td class="price">100,00 €</td>
+            <td class="price">150,00 €</td>
+            <td class="price">300,00 €</td>
+            <td class="price">3.300,00 €</td>
+            <td class="kaution">3.000,00 €</td>
+          </tr>
+          <tr>
+            <td>Baustromverteiler TYP GV400S (6x 100A Anschlüsse)</td>
+            <td class="price">50,00 €</td>
+            <td class="price">120,00 €</td>
+            <td class="price">280,00 €</td>
+            <td class="price">3.000,00 €</td>
+            <td class="kaution">2.800,00 €</td>
+          </tr>
+          <tr>
+            <td>Baustromverteiler TYP GV400L (355A/250A/4x 100A)</td>
+            <td class="price">100,00 €</td>
+            <td class="price">150,00 €</td>
+            <td class="price">380,00 €</td>
+            <td class="price">4.000,00 €</td>
+            <td class="kaution">3.500,00 €</td>
+          </tr>
+          <tr>
+            <td>Anschlussschrank max. 125A Direktmessung</td>
+            <td class="price">10,00 €</td>
+            <td class="price">50,00 €</td>
+            <td class="price">80,00 €</td>
+            <td class="price">880,00 €</td>
+            <td class="kaution">450,00 €</td>
+          </tr>
+          <tr>
+            <td>Anschlussschrank max. 250A Wandlermessung</td>
+            <td>-</td>
+            <td class="price">100,00 €</td>
+            <td class="price">220,00 €</td>
+            <td class="price">2.500,00 €</td>
+            <td class="kaution">2.000,00 €</td>
+          </tr>
+          <tr>
+            <td>Anschlussschrank max. 400A Wandlermessung</td>
+            <td>-</td>
+            <td class="price">150,00 €</td>
+            <td class="price">300,00 €</td>
+            <td class="price">3.300,00 €</td>
+            <td class="kaution">150,00 €</td>
+          </tr>
+          <tr>
+            <td>Zubehör Kreuzerder inkl. Anschlussleitung</td>
+            <td class="price">2,50 €</td>
+            <td class="price">10,00 €</td>
+            <td class="price">30,00 €</td>
+            <td class="price">365,00 €</td>
+            <td class="kaution">20,00 €</td>
+          </tr>
+          <tr>
+            <td>Zubehör Stromkabel 10m (16A/32A/63A)</td>
+            <td class="price">3,00 €</td>
+            <td class="price">10,00 €</td>
+            <td class="price">25,00 €</td>
+            <td class="price">365,00 €</td>
+            <td class="kaution">50,00 €</td>
+          </tr>
+          <tr>
+            <td>Zubehör Stromkabel 25m (16A/32A/63A)</td>
+            <td class="price">5,00 €</td>
+            <td class="price">15,00 €</td>
+            <td class="price">40,00 €</td>
+            <td class="price">365,00 €</td>
+            <td class="kaution">100,00 €</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Unsere Vorteile</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">✅</div>
+          <h3>DGUV 03 geprüft</h3>
+          <p>Alle unsere Baustromanlagen werden regelmäßig nach DGUV Vorschrift 3 geprüft und zertifiziert.</p>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">⚡</div>
+          <h3>VDE 0100 704 konform</h3>
+          <p>Unsere Baustromverteiler erfüllen die höchsten technischen Standards nach VDE 0100 704.</p>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">🚚</div>
+          <h3>Schnelle Lieferung</h3>
+          <p>Kurzfristige Verfügbarkeit und schnelle Lieferung direkt auf Ihre Baustelle.</p>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">🛠️</div>
+          <h3>Komplettservice</h3>
+          <p>Von der Antragstellung bis zur Abmeldung - wir begleiten Sie durch den gesamten Prozess.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Technische Ausstattung</h2>
+      <div class="services-grid">
+        <div class="service-card topseller-container">
+          <div class="topseller-sticker">Topseller</div>
+          <div class="service-icon">⚡</div>
+          <h3>Kleine Anlagen</h3>
+          <p><strong>TYP I-III:</strong> 16A bis 63A Anschlüsse, 5-9 Steckdosen, ideal für kleinere bis mittlere Bauprojekte. Bereits ab 1 Euro pro Tag verfügbar!</p>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">🏗️</div>
+          <h3>Krananlagen</h3>
+          <p><strong>KT125-160:</strong> 63A bis 160A Leistung, speziell konzipiert für Kran- und Hebeanlagen für Baustellen mit hohem Energiebedarf.</p>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">🏭</div>
+          <h3>Große Anlagen</h3>
+          <p><strong>GV400S/L:</strong> Anschlussstrom bis 400A für mehrere Anschlüsse auf Großbaustellen mit unseren Gruppenverteiler TYP GV400L/S.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="kontakt">
+    <h2>📞 Jetzt Baustromanlage anfragen!</h2>
+    <p><strong>Schnell · Zuverlässig · Sicher</strong></p>
+    <div class="kontakt-daten">
+      <div class="kontakt-item">
+        <span>📞 Telefon</span>
+        <a href="tel:015229575225">01522 9575225</a>
+      </div>
+      <div class="kontakt-item">
+        <span>📧 E-Mail</span>
+        <a href="mailto:info@caru-tec.de">info@caru-tec.de</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="impressum.html">Impressum</a>
+        <a href="agb.html">AGB</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </div>
+      <p>&copy; 2015 CaRu-TEC – Carlo Rumè<br>
+      Meisterbetrieb für Elektrotechnik · Damm 35 · 25421 Pinneberg<br>
+      Telefon: 01522 9575225 · E-Mail: info@caru-tec.de<br>
+      IBAN: DE79 2219 1405 0007 7025 60 · SteuerNr: 31/073/02015 · BetriebsNr: 2121222348</p>
+    </div>
+  </footer>
+</body>
+</html>
